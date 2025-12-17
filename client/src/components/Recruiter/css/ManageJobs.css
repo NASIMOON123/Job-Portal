@@ -1,0 +1,154 @@
+/* Reset and font */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.manage-jobs-container {
+  padding: 30px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+.manage-jobs-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Grid layout */
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Card styling */
+.job-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+}
+
+.job-card h3 {
+  margin-bottom: 12px;
+  color: #0a3d62;
+}
+
+.job-card p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.job-card p strong {
+  color: #000;
+}
+
+/* Button group */
+.job-buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+/* Individual buttons */
+.job-buttons button,
+.view-toggle-button {
+  padding: 8px 16px;
+  margin-top: 10px;
+  margin-right: 8px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.job-buttons button:nth-child(2) {
+  background-color: #dc3545; /* Delete - red */
+  color: white;
+}
+
+.job-buttons button:nth-child(2):hover {
+  background-color: #b02a37;
+}
+
+.job-buttons button:nth-child(3) {
+  background-color: #ffc107; /* Edit - yellow */
+  color: #000;
+}
+
+.job-buttons button:nth-child(3):hover {
+  background-color: #e0a800;
+}
+
+.view-toggle-button {
+  background-color: #007bff; /* View More / Less - blue */
+  color: white;
+}
+
+.view-toggle-button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive text wrap */
+@media (max-width: 500px) {
+  .job-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .job-buttons button {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+/* Use Inter font */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Reduce spacing between lines in job card */
+.job-card {
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 1.3; /* Reduced line spacing */
+}
+
+.job-card h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0a3d62;
+}
+
+.job-card p {
+  margin: 4px 0; /* Reduced space between lines */
+  font-size: 17px; /* Slightly smaller font */
+  color: #444;
+}
+.heading{
+  color: rgb(245, 94, 237);
+}

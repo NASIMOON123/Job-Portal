@@ -1,0 +1,55 @@
+.recommended-jobs-container {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .recommended-job-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .job-card {
+    flex: 1 1 45%;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px #ccc;
+  }
+  
+  .job-card h3 {
+    margin-top: 0;
+  }
+  
+  .apply-btn, .save-btn {
+    margin-right: 10px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .apply-btn {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .apply-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+  
+  .save-btn {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .error-msg {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+  }
+  

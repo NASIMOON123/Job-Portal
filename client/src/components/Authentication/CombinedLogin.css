@@ -1,0 +1,229 @@
+/* =======================
+   Global Wrapper
+======================= */
+.combined-login-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* =======================
+     Left Side - Image
+  ======================= */
+  .login-left {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-left: 100px;
+  }
+  
+  .login-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .back-home-btn-left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: rgba(29, 30, 31, 0.8);
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
+  
+  .back-home-btn-left:hover {
+    background-color: rgb(115, 118, 121);
+  }
+  
+  /* =======================
+     Right Side - Login Form
+  ======================= */
+  .login-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    position: relative;
+    background-color: #83f0e1 !important;
+    margin-right: 90px;
+}
+
+  
+  /* Header */
+  .login-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .login-header p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+    text-align: center;
+    padding: 0;
+  }
+  
+  /* Toggle buttons */
+  .login-toggle {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+  
+  .login-toggle button {
+    padding: 10px 25px;
+    border-radius: 5px;
+    border: 1px solid #569fe7;
+    background-color: rgb(56, 131, 245);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+  }
+  
+  .login-toggle button.active {
+    background-color: #1f71c4;
+    color: white;
+  }
+  
+  /* Login form container */
+  .login-form-container {
+    width: 500px;
+    
+    
+  }
+  
+  /* =======================
+     Theme Variables
+  ======================= */
+  :root {
+    --bg-color: #4c7eb8;
+    --text-color: #333333;
+    --primary-color: #007bff;
+    --secondary-color: #0056b3;
+    --input-bg: #fff;
+    --input-border: #ccc;
+  }
+  
+  [data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #080808;
+    --primary-color: #1e90ff;
+    --secondary-color: #104e8b;
+    --input-bg: #1f1f1f;
+    --input-border: #444;
+  }
+  
+  /* Apply theme */
+  body, .combined-login-wrapper, .login-right, .login-left {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+  }
+  
+  .login-form input,
+  .login-form select {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text-color);
+  }
+  
+  .login-form button,
+  .login-toggle button,
+  .back-home-btn-left {
+    background-color: var(--primary-color);
+    color: #1a1b1b;
+    transition: background-color 0.3s ease;
+  }
+  
+.login-form button:hover,
+.login-toggle button:hover,
+.back-home-btn-left:hover {
+    background-color: rgb(100, 95, 99);
+    color: #d7e0e0; /* keep text white */
+}
+
+  
+  /* =======================
+     Theme Toggle
+  ======================= */
+  .theme-toggle-login-top {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .switch {
+    width: 52px;
+    height: 26px;
+    border-radius: 13px;
+    background-color: var(--input-border);
+    position: relative;
+    transition: background-color 0.3s;
+  }
+  
+  .switch.dark {
+    background-color: var(--secondary-color);
+  }
+  
+  .circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+    color: #fff;
+    font-size: 14px;
+  }
+  
+  .switch.dark .circle {
+    left: 26px; /* slide circle to right */
+  }
+  
+  /* =======================
+     Responsive
+  ======================= */
+  @media (max-width: 768px) {
+    .combined-login-wrapper {
+      flex-direction: column;
+    }
+  
+    .login-left, .login-right {
+      flex: none;
+      width: 100%;
+      height: 50vh;
+    }
+  
+    .login-right {
+      justify-content: flex-start;
+      padding: 1.5rem;
+    }
+  
+    .login-header h1 { font-size: 2rem; }
+  }
+  

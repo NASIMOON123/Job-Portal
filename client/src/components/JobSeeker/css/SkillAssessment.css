@@ -1,0 +1,135 @@
+/* Container */
+.assessment-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Headings */
+h2, h3, h4 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+h4 {
+  margin-top: 25px;
+}
+
+/* Labels and selects */
+label {
+  font-weight: 600;
+  display: block;
+  margin: 12px 0 6px;
+  color: #34495e;
+}
+
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+select:focus {
+  border-color: #2980b9;
+  box-shadow: 0 0 5px rgba(41, 128, 185, 0.3);
+}
+
+/* Buttons */
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #2980b9;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #1c5980;
+  transform: translateY(-2px);
+}
+
+/* Quiz timer */
+.quiz-screen p:first-child {
+  text-align: right;
+  font-weight: 600;
+  color: #e67e22;
+}
+
+/* Quiz options */
+.quiz-screen div {
+  margin: 8px 0;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+  accent-color: #2980b9; /* modern radio button color */
+}
+
+/* Navigation buttons in quiz */
+.quiz-screen button {
+  margin-right: 10px;
+}
+
+/* Instructions Screen */
+.instructions-screen ul {
+  list-style: inside square;
+  margin: 15px 0;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Result Screen */
+.result-screen {
+  text-align: center;
+}
+
+.result-question {
+  background: #f1f5f9;
+  padding: 12px 15px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.result-question p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+}
+
+.result-question hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 10px 0;
+}
+
+/* Correct / Incorrect / Not Answered */
+.result-question p strong {
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .assessment-container {
+    padding: 1rem;
+    margin: 20px;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 12px;
+  }
+}

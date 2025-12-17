@@ -1,0 +1,155 @@
+/* Container */
+.saved-jobs-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading */
+.saved-jobs-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1f2937; /* dark gray-blue */
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Grid layout */
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 24px;
+}
+
+/* Job card */
+.job-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.job-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #0f172a;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.job-details p {
+  margin: 6px 0;
+  color: #334155; /* medium gray */
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* Buttons - shared style */
+.view-more-btn,
+.apply-btn,
+.unsave-btn {
+  display: inline-block;
+  margin-top: 12px;
+  margin-right: 8px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.view-more-btn:hover,
+.apply-btn:hover:not(:disabled),
+.unsave-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* View More button */
+.view-more-btn {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+.view-more-btn:hover {
+  background-color: #e5e7eb;
+}
+
+/* Apply button */
+.apply-btn {
+  background-color: #2563eb;
+  color: #fff;
+}
+.apply-btn:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+.apply-btn:not(:disabled):hover {
+  background-color: #1e40af;
+}
+
+/* Unsave button */
+.unsave-btn {
+  background-color: #ef4444;
+  color: #fff;
+}
+.unsave-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* Messages */
+.error-msg {
+  color: #ef4444;
+  text-align: center;
+  margin-top: 30px;
+  font-weight: 600;
+}
+.empty-msg {
+  text-align: center;
+  margin-top: 30px;
+  font-style: italic;
+  color: #6b7280;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+  .job-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row */
+  }
+}
+
+@media (max-width: 768px) {
+  .job-grid {
+    grid-template-columns: 1fr; /* 1 per row */
+    gap: 16px;
+  }
+
+  .view-more-btn,
+  .apply-btn,
+  .unsave-btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+}
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 per row */
+  gap: 20px;
+}
+
+.job-card {
+  background: #1bb8ab;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}

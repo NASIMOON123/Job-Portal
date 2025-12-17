@@ -1,0 +1,25 @@
+.edit-job-container {
+    padding: 30px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  .edit-job-header {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .close-button {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #9b4444;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  .close-button:hover {
+    color: #e92222;
+  }
+  

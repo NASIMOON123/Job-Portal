@@ -1,0 +1,17 @@
+# Node modules
+node_modules/
+
+# Environment files
+.env
+client/.env
+server/.env
+
+# Build outputs
+client/dist
+client/build
+
+# Multer uploads
+uploads/
+
+# OS files
+.DS_Store

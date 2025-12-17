@@ -1,0 +1,177 @@
+/* ================================
+   RECRUITER DASHBOARD LAYOUT
+=================================== */
+
+.dashboard-wrapper {
+  display: flex;
+  min-height: 100%;
+  background-color: #f4f4f9;
+  font-family: 'Arial', sans-serif;
+}
+
+/* ================================
+   SIDEBAR
+=================================== */
+
+.sidebar {
+  width: 260px;
+  background-color: #003366;
+  color: #ffffff;
+  padding: 25px 20px;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  height: 100%;
+}
+
+.sidebar-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 35px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 18px;
+}
+
+.sidebar a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  transition: 0.25s ease-in-out;
+}
+
+/* Inactive link */
+.inactive {
+  opacity: 0.8;
+}
+
+/* Hover effect */
+.sidebar a:hover {
+  background-color: #0059b3;
+  opacity: 1;
+}
+
+/* Active link */
+.active {
+  background-color: #0073e6;
+  color: #ffffff !important;
+  font-weight: bold;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* ================================
+   MAIN CONTENT AREA
+=================================== */
+
+.main-content {
+  flex: 1;
+  padding: 25px;
+  background-color: #f4f4f9;
+}
+
+/* ================================
+   TOP NAVBAR
+=================================== */
+
+.top-navbar {
+  background-color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.top-navbar button {
+  background-color: #003366;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.top-navbar button:hover {
+  background-color: #0059b3;
+}
+
+/* ================================
+   INNER CONTENT BOX
+=================================== */
+
+.dashboard-content {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  min-height: 80vh;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+/* Hamburger button */
+.hamburger {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+/* Show hamburger in small screens */
+@media (max-width: 900px) {
+  .hamburger {
+    display: block;
+    border: none;
+    background: none;
+  }
+
+  .sidebar {
+    
+    left: -260px;
+    top: 0;
+    height: 100%;
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .main-content {
+    padding-left: 0 !important;
+  }
+}
+/* Close button inside sidebar (visible only on mobile) */
+.close-btn {
+  display: none;
+  top: -10px;
+  right: 0px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  color: #ffffff;
+  cursor: pointer;
+  padding-right: 0;
+}
+
+@media (max-width: 900px) {
+  .close-btn {
+    display: block;
+  
+    
+  }
+}

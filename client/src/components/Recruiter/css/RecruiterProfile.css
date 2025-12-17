@@ -1,0 +1,64 @@
+.recruiter-profile-container {
+    max-width: 600px;
+    margin: auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+  }
+  
+  .profile-info p {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .profile-progress {
+    margin-top: 1.5rem;
+  }
+  
+  .progress-bar {
+    height: 12px;
+    background: #eee;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  
+  .progress-bar .filled {
+    height: 100%;
+    background: #27ae60;
+    transition: width 0.4s ease;
+  }
+  
+  .complete-btn {
+    background-color: #f1c40f;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .complete-btn:hover {
+    background-color: #f39c12;
+  }
+  .profile-image-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .circular-profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0077cc;
+  }
+  
