@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-
+import API from '../../api/api';
 const ScheduledInterviews = () => {
   const [interviews, setInterviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,7 +17,7 @@ const ScheduledInterviews = () => {
   const fetchInterviews = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('/api/interviews/scheduled', {
+      const res = await API.get('/api/interviews/scheduled', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setInterviews(res.data);
@@ -32,7 +32,7 @@ const ScheduledInterviews = () => {
     if (!window.confirm('Are you sure you want to delete this interview?')) return;
 
     try {
-      await axios.delete(`/api/interviews/${id}`, {
+      await API.delete(`/api/interviews/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       toast.success('✅ Interview deleted');
@@ -62,7 +62,7 @@ const ScheduledInterviews = () => {
 
   const submitEdit = async (id) => {
     try {
-      await axios.put(`/api/interviews/${id}`, {
+      await API.put(`/api/interviews/${id}`, {
         date: new Date(editData.date),
         platform: editData.platform,
         link: editData.link,

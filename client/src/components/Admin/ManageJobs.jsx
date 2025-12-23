@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./css/ManageJobs.css"; // Import CSS
-
+import API from "../../api/api";
 const ManageJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
@@ -17,7 +17,7 @@ const ManageJobs = () => {
 
   const fetchJobs = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/jobs");
+      const res = await API.get("/api/admin/jobs");
       setJobs(res.data);
     } catch (err) {
       console.error("Error fetching jobs:", err);
@@ -27,7 +27,7 @@ const ManageJobs = () => {
   const deleteJob = async (id) => {
     if (!window.confirm("Are you sure you want to delete this job?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/admin/jobs/${id}`);
+      await API.delete(`/api/admin/jobs/${id}`);
       setJobs(jobs.filter((job) => job._id !== id));
     } catch (err) {
       console.error(err);
@@ -48,8 +48,8 @@ const ManageJobs = () => {
 
   const saveEdit = async () => {
     try {
-      await axios.put(
-        `http://localhost:5000/api/admin/jobs/${editingJob._id}`,
+      await API.put(
+        `/api/admin/jobs/${editingJob._id}`,
         editingJob
       );
       fetchJobs();
@@ -62,8 +62,8 @@ const ManageJobs = () => {
   const viewApplicants = async (job) => {
     setSelectedJob(job);
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/admin/jobs/${job._id}/applications`
+      const res = await API.get(
+        `/api/admin/jobs/${job._id}/applications`
       );
       setApplicants(res.data); // list of applications with populated jobSeekerId
       setShowApplicantsModal(true);
@@ -170,47 +170,7 @@ const ManageJobs = () => {
         </div>
       )}
 
-      {/* Applicants Modal
-      {showApplicantsModal && selectedJob && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <button
-              className="modal-close"
-              onClick={() => setShowApplicantsModal(false)}
-            >
-              &times;
-            </button>
-            <h3 className="text-xl font-bold mb-3">
-              Applicants for {selectedJob.title}
-            </h3>
-            {applicants.length === 0 ? (
-              <p>No applicants yet.</p>
-            ) : (
-              <ul className="space-y-2 max-h-64 overflow-y-auto">
-                {applicants.map((app) => (
-                  <li key={app._id} className="border p-2 rounded">
-                    <p>
-                      <strong>Name:</strong> {app.jobSeekerId?.name}
-                    </p>
-                    <p>
-                      <strong>Email:</strong> {app.jobSeekerId?.email}
-                    </p>
-                    <p>
-                      <strong>Phone:</strong> {app.jobSeekerId?.phone}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            )}
-            <button
-              className="cancel-btn mt-3"
-              onClick={() => setShowApplicantsModal(false)}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )} */}
+    
       {showApplicantsModal && selectedJob && (
   <div className="modal-overlay">
     <div className="modal applicants-modal">

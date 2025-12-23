@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import './css/ApplyModal.css';
-
+import API from '../../api/api';
 const ApplyModal = ({ jobId, isOpen, onClose, jobTitle, applyJob, setAppliedJobIds ,  onApplySuccess }) => {
   const [userInfo, setUserInfo] = useState({ name: '', email: '', phone: '' });
   const [coverLetterFile, setCoverLetterFile] = useState(null);
@@ -23,9 +23,7 @@ const ApplyModal = ({ jobId, isOpen, onClose, jobTitle, applyJob, setAppliedJobI
     const fetchUserInfo = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch('http://localhost:5000/api/jobseeker/profile', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await API.get('/api/jobseeker/profile');
         const data = await res.json();
         setUserInfo({
           name: data.name || '',
@@ -89,13 +87,14 @@ const ApplyModal = ({ jobId, isOpen, onClose, jobTitle, applyJob, setAppliedJobI
       formData.append('graduation', graduation);
       formData.append('yearOfPassing', yearOfPassing);
 
-      const response = await fetch('http://localhost:5000/api/jobseeker/apply', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      });
+      // const response = await fetch('http://localhost:5000/api/jobseeker/apply', {
+      //   method: 'POST',
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      //   body: formData,
+      // });
+      const response = await API.post('/api/jobseeker/apply', formData);
 
       if (!response.ok) {
         const errorData = await response.json();

@@ -6,6 +6,8 @@ import axios from 'axios';
 import './css/Applications.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import API from '../../api/api';
+const BACKEND_URL = API.defaults.baseURL;
 
 const RecruiterApplications = () => {
   const [applications, setApplications] = useState([]);
@@ -17,7 +19,7 @@ const RecruiterApplications = () => {
     const fetchApplications = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/recruiter/applications', {
+        const response = await API.get('/api/recruiter/applications', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setApplications(response.data.applications);
@@ -33,8 +35,8 @@ const RecruiterApplications = () => {
   const updateStatusAndEmail = async (applicantId, jobId, newStatus) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post(
-        `http://localhost:5000/api/recruiter/applications/${applicantId}/${jobId}/status-and-offer`,
+      await API.post(
+        `/api/recruiter/applications/${applicantId}/${jobId}/status-and-offer`,
         
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
@@ -74,7 +76,7 @@ const RecruiterApplications = () => {
               <p>
                 <strong>Resume:</strong>{' '}
                 {app.resumeFile ? (
-                  <a href={`http://localhost:5000/${app.resumeFile}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${BACKEND_URL}/${app.resumeFile}`} target="_blank" rel="noopener noreferrer">
                     View Resume
                   </a>
                 ) : 'N/A'}
@@ -83,7 +85,7 @@ const RecruiterApplications = () => {
               <p>
                 <strong>Cover Letter:</strong>{' '}
                 {app.coverLetterFile ? (
-                  <a href={`http://localhost:5000/${app.coverLetterFile}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${BACKEND_URL}/${app.coverLetterFile}`} target="_blank" rel="noopener noreferrer">
                     View Cover Letter
                   </a>
                 ) : 'N/A'}

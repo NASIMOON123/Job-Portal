@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/ManageAdmins.css';
-
+import API from "../api/api";
 const ManageAdmins = () => {
   const [admins, setAdmins] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -11,7 +11,7 @@ const ManageAdmins = () => {
   // Fetch all admins
   const fetchAdmins = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/admin/all');
+      const res = await API.get("/api/admin/all");
       setAdmins(res.data);
     } catch (err) {
       console.error('Failed to fetch admins:', err);
@@ -45,7 +45,7 @@ const ManageAdmins = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this admin?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/admin/${id}`);
+        await API.delete(`/api/admin/${id}`);
         fetchAdmins();
       } catch (err) {
         console.error('Failed to delete admin:', err);
@@ -58,9 +58,9 @@ const ManageAdmins = () => {
     e.preventDefault();
     try {
       if (editingAdmin) {
-        await axios.put(`http://localhost:5000/api/admin/${editingAdmin._id}`, formData);
+        await API.put(`/api/admin/${editingAdmin._id}`, formData);
       } else {
-        await axios.post('http://localhost:5000/api/admin/register', formData);
+        await API.post('/api/admin/register', formData);
       }
       setShowModal(false);
       fetchAdmins();

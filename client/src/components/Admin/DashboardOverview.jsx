@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/DashboardOverview.css';
+import API from "../api/api";
 const DashboardOverview = () => {
   const [stats, setStats] = useState({
     totalAdmins: 0,
@@ -13,7 +14,7 @@ const DashboardOverview = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/admin/stats');
+        const response = await API.get("/api/admin/stats");
         setStats(response.data);
       } catch (err) {
         console.error('Failed to fetch stats:', err);

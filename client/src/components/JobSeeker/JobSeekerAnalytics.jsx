@@ -1,8 +1,8 @@
 
-  import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
+import API from '../../api/api';
 const COLORS = ['#FFBB28', '#00C49F', '#FF8042']; // Pending, Accepted, Rejected
 
 const JobSeekerAnalytics = () => {
@@ -17,8 +17,8 @@ const JobSeekerAnalytics = () => {
           return;
         }
 
-        const res = await axios.get(
-          'http://localhost:5000/api/jobseeker/analytics',
+        const res = await API.get(
+          '/api/jobseeker/analytics',
           {
             headers: {
               Authorization: `Bearer ${token}`,

@@ -7,7 +7,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-
+import API from "../api/api";
 
 
 
@@ -38,7 +38,8 @@ const Login = () => {
     }
     
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', formData);
+      // const response = await axios.post('http://localhost:5000/api/auth/login', formData);
+      const response = await API.post("/api/auth/login", formData);
       localStorage.setItem('user', JSON.stringify(response.data.user));
       localStorage.setItem('token', response.data.token);
   

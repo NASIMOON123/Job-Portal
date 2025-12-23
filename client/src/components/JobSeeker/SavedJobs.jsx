@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './css/SavedJobs.css'; // We'll create this file next
 import ApplyModal from './ApplyModal'; 
-
+import API from '../../api/api';
 const SavedJobs = () => {
   const [savedJobs, setSavedJobs] = useState([]);
   const [expandedJobId, setExpandedJobId] = useState(null);
@@ -17,7 +17,7 @@ const [appliedJobIds, setAppliedJobIds] = useState([]);
     const fetchSavedJobs = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/jobseeker/saved', {
+        const res = await API.get('/api/jobseeker/saved', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setSavedJobs(res.data);
@@ -29,7 +29,7 @@ const [appliedJobIds, setAppliedJobIds] = useState([]);
     const fetchAppliedJobs = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/jobseeker/applied', {
+        const res = await API.get('/api/jobseeker/applied', {
           headers: { Authorization: `Bearer ${token}` },
         });
         const appliedIds = res.data.map(item => item.job._id);
@@ -47,8 +47,8 @@ const [appliedJobIds, setAppliedJobIds] = useState([]);
   const unsaveJob = async (jobId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post(
-        'http://localhost:5000/api/jobseeker/unsave',
+      await API.post(
+        '/api/jobseeker/unsave',
         { jobId },
         { headers: { Authorization: `Bearer ${token}` } }
       );

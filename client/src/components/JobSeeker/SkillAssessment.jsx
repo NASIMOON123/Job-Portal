@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/SkillAssessment.css';
-
+import API from '../../api/api';
 const SkillAssessment = ({ user }) => {
   const [domain, setDomain] = useState('');
   const [level, setLevel] = useState('');
@@ -17,7 +17,7 @@ const SkillAssessment = ({ user }) => {
   // Fetch questions for selected domain and level
   const handleStart = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/quiz/${domain}/${level}`);
+      const response = await API.get(`/api/quiz/${domain}/${level}`);
       setQuestions(response.data);
       setStep('quiz');
     } catch (error) {
@@ -41,7 +41,7 @@ const SkillAssessment = ({ user }) => {
     }));
 
     try {
-      const response = await axios.post('http://localhost:5000/api/quiz/submit', {
+      const response = await API.post('/api/quiz/submit', {
         answers: answersArray
       });
 

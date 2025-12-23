@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import API from '../../api/api';
 const ScheduleInterview = () => {
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const ScheduleInterview = () => {
 
   useEffect(() => {
     // Fetch job seekers who applied
-    axios.get('/api/applications/jobseekers', {
+    API.get('/api/applications/jobseekers', {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => {
@@ -32,7 +32,7 @@ const ScheduleInterview = () => {
       .catch(err => console.error('Error fetching job seekers', err));
 
     // Fetch recruiter's jobs
-    axios.get('/api/recruiter/jobs', {
+    API.get('/api/recruiter/jobs', {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => setJobs(res.data))
@@ -58,7 +58,7 @@ const ScheduleInterview = () => {
     }
 
     try {
-      const response = await axios.post('/api/interviews/schedule', formData, {
+      const response = await API.post('/api/interviews/schedule', formData, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       toast.success(`✅ ${response.data.message}`);

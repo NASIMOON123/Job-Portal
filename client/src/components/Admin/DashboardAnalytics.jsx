@@ -15,7 +15,7 @@ import {
   Legend,
 } from "chart.js";
 import "./css/DashboardAnalytics.css";
-
+import API from "../api/api";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -40,8 +40,8 @@ const DashboardAnalytics = () => {
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:5000/api/admin/analytics"
+        const res = await API.get(
+          "/api/admin/analytics"
         );
         setStats(res.data);
       } catch (err) {

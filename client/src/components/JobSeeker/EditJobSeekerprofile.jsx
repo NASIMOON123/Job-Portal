@@ -6,6 +6,8 @@ import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import './css/EditJobSeekerProfile.css';
+import API from '../../api/api';
+const BACKEND_URL = API.defaults.baseURL;
 
 const EditJobSeekerProfile = () => {
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ const [imagePreview, setImagePreview] = useState('');
   useEffect(() => {
     const fetchDetails = async () => {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/jobseeker/profile', {
+      const res = await API.get('/api/jobseeker/profile', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setForm(res.data);
@@ -70,7 +72,7 @@ const handleSubmit = async () => {
       formData.append('profileImage', profileImage);
     }
 
-    await axios.put('http://localhost:5000/api/jobseeker/update-profile', formData, {
+    await API.put('/api/jobseeker/update-profile', formData, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
@@ -101,8 +103,8 @@ const handleSubmit = async () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post(
-        'http://localhost:5000/api/jobseeker/change-password',
+      await API.post(
+        '/api/jobseeker/change-password',
         { currentPassword, newPassword },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -165,7 +167,7 @@ const handleSubmit = async () => {
 {/* Show existing profile image if no new image is selected */}
 {!imagePreview && form.profileImage && (
   <img
-    src={`http://localhost:5000/${form.profileImage}`}
+    src={`${BACKEND_URL}/${form.profileImage}`}
     alt="Current Profile"
     style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '50%', marginTop: '10px' }}
   />

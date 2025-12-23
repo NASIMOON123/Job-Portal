@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import './Login.css';
 import { Link } from 'react-router-dom';
-
+import API from '../../api/api';
 
 const AdminLogin = () => {
    const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -16,7 +16,7 @@ const AdminLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/admin/login', {
+      const response = await API.post('/api/admin/login', {
         email,
         password,
       });

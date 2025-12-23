@@ -4,6 +4,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/SearchJobSeekers.css';
+import API from '../../api/api';
+const BACKEND_URL = API.defaults.baseURL;
 
 const SearchJobSeekers = () => {
   const [filters, setFilters] = useState({
@@ -24,7 +26,7 @@ const SearchJobSeekers = () => {
     const fetchJobs = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/recruiter/jobs', {
+        const res = await API.get('/api/recruiter/jobs', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setJobs(res.data);
@@ -42,7 +44,7 @@ const SearchJobSeekers = () => {
   const handleSearch = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/recruiter/search-jobseekers', {
+      const res = await API.get('/api/recruiter/search-jobseekers', {
         headers: { Authorization: `Bearer ${token}` },
         params: filters,
       });
@@ -59,8 +61,8 @@ const SearchJobSeekers = () => {
     }
     try {
       const token = localStorage.getItem('token');
-      await axios.post(
-        'http://localhost:5000/api/recruiter/send-job-email',
+      await API.post(
+        '/api/recruiter/send-job-email',
         { jobSeekerId, jobId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -124,7 +126,7 @@ const SearchJobSeekers = () => {
               {js.resumeFile ? (
                 <p>
                   <strong>Resume: </strong>
-                  <a href={`http://localhost:5000/${js.resumeFile}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${BACKEND_URL}/${js.resumeFile}`} target="_blank" rel="noopener noreferrer">
                     View / Download
                   </a>
                 </p>
@@ -133,7 +135,7 @@ const SearchJobSeekers = () => {
               )}
               {js.profileImage && (
                 <img
-                  src={`http://localhost:5000/${js.profileImage}`}
+                src={`${BACKEND_URL}/${js.profileImage}`}
                   alt="Profile"
                   style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '50%', marginTop: '10px' }}
                 />

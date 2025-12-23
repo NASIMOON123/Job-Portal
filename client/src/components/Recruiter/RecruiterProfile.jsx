@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './css/RecruiterProfile.css';
-
+import API from '../../api/api';
+const BACKEND_URL = API.defaults.baseURL;
 const RecruiterProfile = () => {
   const [recruiter, setRecruiter] = useState(null);
   const [completion, setCompletion] = useState(0);
@@ -14,13 +15,13 @@ const RecruiterProfile = () => {
     const fetchProfile = async () => {
         try {
           const token = localStorage.getItem('token');
-          const res = await axios.get('http://localhost:5000/api/recruiter/profile', {
+          const res = await API.get('/api/recruiter/profile', {
             headers: { Authorization: `Bearer ${token}` }
           });
           setRecruiter(res.data);
           calculateCompletion(res.data);
           // Update preview with image URL from backend or fallback to default
-          setPreview(res.data.profileImage ? `http://localhost:5000${res.data.profileImage}` : '');
+          setPreview(res.data.profileImage ? `${BACKEND_URL}${res.data.profileImage}` : '');
           setLoading(false);
         } catch (err) {
           console.error('Error fetching recruiter profile:', err);

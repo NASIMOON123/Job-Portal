@@ -12,6 +12,7 @@ import RecommendedJobs from './RecommendedJobs';
 import SkillAssessment from './SkillAssessment';
 import JobSeekerAnalytics from './JobSeekerAnalytics';
 import './css/JobSeekerDashboard.css'; // Adjust if needed
+
 // Dummy page components (replace with your real components / API calls)
 const ProfileSummary = () => (
   <div>

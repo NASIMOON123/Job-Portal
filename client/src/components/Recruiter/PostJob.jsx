@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './css/PostJob.css'; // Optional: create styling
-
+import API from '../../api/api';
 const PostJob = () => {
   const initialJobData = {
     title: '',
@@ -28,7 +28,7 @@ const PostJob = () => {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.post("http://localhost:5000/api/recruiter/jobs", jobData, {
+      await API.post("/api/recruiter/jobs", jobData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',

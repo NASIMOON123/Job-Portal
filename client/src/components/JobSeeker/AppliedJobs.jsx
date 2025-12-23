@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './css/AppliedJobs.css';
+import API from '../../api/api';
+const BACKEND_URL = API.defaults.baseURL;
+
 
 const AppliedJobs = () => {
   const [appliedJobs, setAppliedJobs] = useState([]);
@@ -12,7 +15,7 @@ const AppliedJobs = () => {
       try {
         const token = localStorage.getItem('token');
         // Endpoint should return applied jobs along with application details
-        const res = await axios.get('http://localhost:5000/api/jobseeker/applied', {
+        const res = await API.get('/api/jobseeker/applied', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAppliedJobs(res.data);
@@ -66,7 +69,7 @@ return (
                   {application.coverLetterFile && (
                     <p>
                       <strong>Cover Letter:</strong>{' '}
-                      <a href={`http://localhost:5000/${application.coverLetterFile}`} target="_blank" rel="noopener noreferrer">
+                      <a  href={`${BACKEND_URL}/${application.coverLetterFile}`} target="_blank" rel="noopener noreferrer">
                         View/Download
                       </a>
                     </p>
@@ -74,7 +77,7 @@ return (
                   {application.resumeFile && (
                     <p>
                       <strong>Resume:</strong>{' '}
-                      <a href={`http://localhost:5000/${application.resumeFile}`} target="_blank" rel="noopener noreferrer">
+                      <a href={`${BACKEND_URL}/${application.resumeFile}`} target="_blank" rel="noopener noreferrer">
                         View/Download
                       </a>
                     </p>

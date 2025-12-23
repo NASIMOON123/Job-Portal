@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import './css/EditJob.css';
+import API from '../../api/api';
 const EditJob = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const EditJob = () => {
     const fetchJob = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/recruiter/jobs/${id}`, {
+        const response = await API.get(`/api/recruiter/jobs/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const job = response.data;
@@ -48,7 +49,7 @@ const EditJob = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/recruiter/jobs/${id}`, jobData, {
+      await API.put(`/api/recruiter/jobs/${id}`, jobData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert('Job updated successfully');

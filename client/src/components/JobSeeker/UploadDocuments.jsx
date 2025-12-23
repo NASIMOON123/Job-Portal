@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './css/UploadDocuments.css';
+import API from '../../api/api';
 
 const UploadDocuments = () => {
   // Files chosen locally for upload
@@ -26,14 +27,15 @@ const UploadDocuments = () => {
   const [message, setMessage] = useState('');
 
   // Base URL for backend file serving
-  const baseUrl = 'http://localhost:5000/';
+  // const baseUrl = 'http://localhost:5000/';
+  const baseUrl = API.defaults.baseURL;
 
   // Fetch previously uploaded documents on mount
   useEffect(() => {
     const fetchUploadedDocs = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/jobseeker/documents', {
+        const res = await API.get('/api/jobseeker/documents', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setExistingDocs(res.data);
@@ -74,7 +76,7 @@ const UploadDocuments = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post('http://localhost:5000/api/jobseeker/upload-documents', formData, {
+      const response = await API.post('/api/jobseeker/upload-documents', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,

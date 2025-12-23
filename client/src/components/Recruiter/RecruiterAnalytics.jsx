@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Bar, Pie } from 'react-chartjs-2';
+import API from '../../api/api';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -33,7 +34,7 @@ const RecruiterAnalytics = () => {
     const fetchAnalytics = async () => {
       try {
         const user = JSON.parse(localStorage.getItem('user'));
-        const res = await axios.get(`http://localhost:5000/api/recruiter/analytics/${user._id}`);
+        const res = await API.get(`/api/recruiter/analytics/${user._id}`);
         setStats(res.data);
       } catch (err) {
         console.error('Failed to fetch recruiter analytics:', err);

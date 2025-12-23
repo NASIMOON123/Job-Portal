@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './css/JobSeekerProfile.css'; // Adjust if needed
-
+import API from "../api/api";
+const BACKEND_URL = API.defaults.baseURL;
 const JobSeekerProfile = () => {
   const [user, setUser] = useState(null);
   const [completion, setCompletion] = useState(0);
@@ -14,7 +15,7 @@ const JobSeekerProfile = () => {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/jobseeker/profile', {
+        const res = await API.get('/api/jobseeker/profile', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUser(res.data);
@@ -53,7 +54,7 @@ const JobSeekerProfile = () => {
   src={
     user.profileImage.startsWith('http')
       ? user.profileImage
-      : `http://localhost:5000/${user.profileImage}`
+      : `${BACKEND_URL}/${user.profileImage}`
   }
   alt="Profile"
   style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover' }}
@@ -90,7 +91,7 @@ const JobSeekerProfile = () => {
   <p>
     <strong>Resume:</strong>{' '}
     <a
-      href={`http://localhost:5000/${user.resumeFile}`}
+      href={`${BACKEND_URL}/${user.resumeFile}`}
       target="_blank"
       rel="noopener noreferrer"
       download
@@ -104,7 +105,7 @@ const JobSeekerProfile = () => {
   <p>
     <strong>Cover Letter:</strong>{' '}
     <a
-      href={`http://localhost:5000/${user.coverLetterFile}`}
+      href={`${BACKEND_URL}/${user.coverLetterFile}`}
       target="_blank"
       rel="noopener noreferrer"
       download

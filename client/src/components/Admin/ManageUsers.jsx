@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/ManageUsers.css';
-
+import API from '../../api/api';
 const ManageUsers = () => {
   const [activeTab, setActiveTab] = useState('jobSeekers');
   const [jobSeekers, setJobSeekers] = useState([]);
@@ -22,11 +22,11 @@ const ManageUsers = () => {
       const token = localStorage.getItem("token");
 
       const [seekersRes, recruitersRes] = await Promise.all([
-        axios.get("http://localhost:5000/api/admin/jobseekers", {
+        API.get("/api/admin/jobseekers", {
           headers: { Authorization: `Bearer ${token}` }
         }),
         
-        axios.get("http://localhost:5000/api/admin/recruiters", {
+        API.get("/api/admin/recruiters", {
           headers: { Authorization: `Bearer ${token}` }
         })
       ]);
@@ -43,7 +43,7 @@ const ManageUsers = () => {
   const handleViewProfile = async (user, role) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(`http://localhost:5000/api/admin/${role}/${user._id}`, {
+      const res = await API.get(`/api/admin/${role}/${user._id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setSelectedUser(res.data);
@@ -57,7 +57,7 @@ const ManageUsers = () => {
   const toggleUserStatus = async (userId, role, currentStatus) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`http://localhost:5000/api/admin/${role}/${userId}/status`,
+      await API.put(`/api/admin/${role}/${userId}/status`,
         { active: !currentStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );

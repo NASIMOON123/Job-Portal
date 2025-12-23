@@ -4,7 +4,7 @@ import { Link ,useNavigate  } from 'react-router-dom';
 import './Login.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
-
+import API from '../../api/api';
 
 
 
@@ -27,14 +27,20 @@ const Register = () => {
     if (!formData.email || !formData.role) return;
   
     try {
-      const response = await fetch('http://localhost:5000/api/auth/check-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: formData.email, role: formData.role })
+      // const response = await fetch('http://localhost:5000/api/auth/check-email', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ email: formData.email, role: formData.role })
+      // });
+  
+      // const data = await response.json();
+      // setEmailExists(data.exists);
+      const response = await API.post('/api/auth/check-email', {
+        email: formData.email,
+        role: formData.role
       });
   
-      const data = await response.json();
-      setEmailExists(data.exists);
+      setEmailExists(response.data.exists);
     } catch (error) {
       console.error('Email check failed:', error);
     }
@@ -73,16 +79,23 @@ const Register = () => {
     }
   
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      // const response = await fetch('http://localhost:5000/api/auth/register', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(formData),
+      // });
   
-      const data = await response.json();
+      // const data = await response.json();
   
-      if (!response.ok) {
-        alert(data.message || 'Registration failed');
+      // if (!response.ok) {
+      //   alert(data.message || 'Registration failed');
+      //   return;
+      // }
+      const response = await API.post('/api/auth/register', formData);
+
+      // If backend returns errors via response.data.message
+      if (response.data.error) {
+        alert(response.data.message || 'Registration failed');
         return;
       }
   

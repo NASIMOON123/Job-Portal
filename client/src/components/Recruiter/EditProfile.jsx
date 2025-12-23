@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/EditProfile.css';
+import API from '../../api/api';
+const BACKEND_URL = API.defaults.baseURL;
+
 import { useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 const EditProfile = () => {
@@ -32,7 +35,7 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/recruiter/profile', {
+        const res = await API.get('/api/recruiter/profile', {
           headers: { Authorization: `Bearer ${token}` }
         });
         
@@ -53,7 +56,8 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
         });
 
         if (data.profileImage) {
-          setPreview(`http://localhost:5000${data.profileImage}`);
+          setPreview(`${BACKEND_URL}${data.profileImage}`);
+
         }
 
         checkCompletion(data);
@@ -76,8 +80,8 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   
     try {
       const token = localStorage.getItem('token');
-      await axios.post(
-        'http://localhost:5000/api/recruiter/change-password',
+      await API.post(
+        '/api/recruiter/change-password',
         { currentPassword, newPassword },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -123,7 +127,7 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     
   
     try {
-      const res = await axios.put('http://localhost:5000/api/recruiter/profile', data, {
+      const res = await API.put('/api/recruiter/profile', data, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'

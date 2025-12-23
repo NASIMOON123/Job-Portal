@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './css/ViewJobs.css'; // reuse styles if suitable
 import ApplyModal from './ApplyModal';
-
+import API from '../../api/api';
 const RecommendedJobs = () => {
   const [filters, setFilters] = useState({});
   const [jobs, setJobs] = useState([]);
@@ -41,7 +41,7 @@ const RecommendedJobs = () => {
   const fetchRecommendedJobs = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/jobseeker/recommended-jobs', {
+      const res = await API.get('/api/jobseeker/recommended-jobs', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setJobs(res.data);
@@ -54,7 +54,7 @@ const RecommendedJobs = () => {
   const fetchSavedJobs = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/jobseeker/saved', {
+      const res = await API.get('/api/jobseeker/saved', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSavedJobIds(res.data.map(job => job._id));
@@ -66,7 +66,7 @@ const RecommendedJobs = () => {
   const fetchAppliedJobs = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/jobseeker/applied', {
+      const res = await API.get('/api/jobseeker/applied', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const appliedIds = res.data.map(item => item.job._id);
@@ -79,7 +79,7 @@ const RecommendedJobs = () => {
   const saveJob = async (jobId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/jobseeker/save', { jobId }, {
+      await API.post('/api/jobseeker/save', { jobId }, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSavedJobIds(prev => [...prev, jobId]);
@@ -91,7 +91,7 @@ const RecommendedJobs = () => {
   const unsaveJob = async (jobId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/jobseeker/unsave', { jobId }, {
+      await API.post('/api/jobseeker/unsave', { jobId }, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSavedJobIds(prev => prev.filter(id => id !== jobId));

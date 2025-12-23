@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
 import "./css/ManageJobs.css";
+import API from '../../api/api';
 
 const ManageJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -14,7 +15,7 @@ const ManageJobs = () => {
   const fetchJobs = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/recruiter/jobs', {
+      const response = await API.get('/api/recruiter/jobs', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -30,7 +31,7 @@ const ManageJobs = () => {
     if (!window.confirm('Are you sure you want to delete this job?')) return;
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/recruiter/jobs/${jobId}`, {
+      await API.delete(`/api/recruiter/jobs/${jobId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("Job deleted successfully!");

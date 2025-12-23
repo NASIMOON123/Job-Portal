@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './css/ViewJobs.css';
 import ApplyModal from './ApplyModal';
-
+import API from '../../api/api';
 const ViewJobs = () => {
   const [filters, setFilters] = React.useState({});
   const [jobs, setJobs] = useState([]);
@@ -60,8 +60,8 @@ const ViewJobs = () => {
   const saveJob = async (jobId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post(
-        'http://localhost:5000/api/jobseeker/save',
+      await API.post(
+        '/api/jobseeker/save',
         { jobId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -74,8 +74,8 @@ const ViewJobs = () => {
   const unsaveJob = async (jobId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post(
-        'http://localhost:5000/api/jobseeker/unsave',
+      await API.post(
+        '/api/jobseeker/unsave',
         { jobId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -96,8 +96,8 @@ const ViewJobs = () => {
   const applyJob = async (jobId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post(
-        'http://localhost:5000/api/jobseeker/apply',
+      await API.post(
+        '/api/jobseeker/apply',
         { jobId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -118,7 +118,7 @@ const ViewJobs = () => {
   const fetchAppliedJobs = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/jobseeker/applied', {
+      const res = await API.get('/api/jobseeker/applied', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const appliedIds = res.data.map(item => item.job._id);
@@ -150,7 +150,7 @@ const ViewJobs = () => {
     const fetchJobs = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/jobseeker/all-jobs', {
+        const res = await API.get('/api/jobseeker/all-jobs', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setJobs(res.data);
@@ -163,7 +163,7 @@ const ViewJobs = () => {
     const fetchSavedJobs = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/jobseeker/saved', {
+        const res = await API.get('/api/jobseeker/saved', {
           headers: { Authorization: `Bearer ${token}` },
         });
         const savedIds = res.data.map((job) => job._id);
