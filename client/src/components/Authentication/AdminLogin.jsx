@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import './Login.css';
 import { Link } from 'react-router-dom';
-import API from '../../api/api';
+import API from "../../api/api";
 
 const AdminLogin = () => {
    const [showForgotPassword, setShowForgotPassword] = useState(false);

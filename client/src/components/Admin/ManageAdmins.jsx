@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/ManageAdmins.css';
-import API from "../api/api";
+import API from "../../api/api";
 const ManageAdmins = () => {
   const [admins, setAdmins] = useState([]);
   const [showModal, setShowModal] = useState(false);

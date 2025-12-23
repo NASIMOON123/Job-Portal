@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import API from '../../api/api';
+import API from "../../api/api";
 const ForgotPassword = () => {
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [otp, setOtp] = useState("");

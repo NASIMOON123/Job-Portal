@@ -15,7 +15,7 @@ import {
   Legend,
 } from "chart.js";
 import "./css/DashboardAnalytics.css";
-import API from "../api/api";
+import API from "../../api/api";
 ChartJS.register(
   CategoryScale,
   LinearScale,

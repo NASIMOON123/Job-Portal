@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/DashboardOverview.css';
-import API from "../api/api";
+import API from "../../api/api";
 const DashboardOverview = () => {
   const [stats, setStats] = useState({
     totalAdmins: 0,

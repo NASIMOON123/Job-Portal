@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './css/JobSeekerProfile.css'; // Adjust if needed
-import API from "../api/api";
+import API from "../../api/api";
 const BACKEND_URL = API.defaults.baseURL;
 const JobSeekerProfile = () => {
   const [user, setUser] = useState(null);

@@ -7,7 +7,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-import API from "../api/api";
+import API from "../../api/api";
 
 
 

@@ -4,7 +4,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/ManageUsers.css';
-import API from '../../api/api';
+import API from "../../api/api";
+
 const ManageUsers = () => {
   const [activeTab, setActiveTab] = useState('jobSeekers');
   const [jobSeekers, setJobSeekers] = useState([]);
