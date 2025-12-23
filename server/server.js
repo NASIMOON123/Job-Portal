@@ -20,17 +20,59 @@
   dotenv.config();
   const app = express();
   const upload = multer();
-
+  const allowedOrigins = [
+    "http://localhost:5173",
+    "https://job-portal.vercel.app",
+    "https://job-portal-nine-tawny.vercel.app",
+    "https://job-portal-project-virid.vercel.app",
+  ];
   connectDB();
 
   // app.use(cors());
+  // app.use(cors({
+  //   origin: [
+  //     "http://localhost:5173",
+  //     "https://job-portal.vercel.app",
+  //     "https://job-portal-nine-tawny.vercel.app",
+  //     "https://job-portal-project-virid.vercel.app"
+  //   ],
+    
+  //   credentials: true ,
+  //   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  //   allowedHeaders: ["Content-Type", "Authorization"],
+  // }));
+  // app.options("*", cors());
+
   app.use(cors({
-    origin: [
-      "http://localhost:5173",
-      "https://job-portal.vercel.app"
-    ],
-    credentials: true
+    origin: function (origin, callback) {
+      // allow requests with no origin (Postman, mobile apps)
+      if (!origin) return callback(null, true);
+  
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }));
+  
+  // VERY IMPORTANT — use SAME config for preflight
+  app.options("*", cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+  
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  }));
+  
   
   app.use(express.json());
 
