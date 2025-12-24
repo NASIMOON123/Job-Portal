@@ -167,7 +167,9 @@ const handleSubmit = async () => {
 {/* Show existing profile image if no new image is selected */}
 {!imagePreview && form.profileImage && (
   <img
-    src={`${BACKEND_URL}/${form.profileImage}`}
+    // src={`${BACKEND_URL}/${form.profileImage}`}
+    src={form.profileImage}
+
     alt="Current Profile"
     style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '50%', marginTop: '10px' }}
   />

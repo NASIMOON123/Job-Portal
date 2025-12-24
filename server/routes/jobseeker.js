@@ -364,7 +364,8 @@
   router.put(
     '/update-profile',
     verifyToken,
-    upload.fields([{ name: 'profileImage', maxCount: 1 }]),
+    // upload.fields([{ name: 'profileImage', maxCount: 1 }]),
+    upload.single("profileImage"),
     async (req, res) => {
       try {
         const userId = req.user.userId;
@@ -388,9 +389,14 @@
         };
 
         // ✅ Handle uploaded profile image
-        if (req.files && req.files['profileImage']) {
-          updateFields.profileImage = req.files['profileImage'][0].path;
+        // if (req.files && req.files['profileImage']) {
+        //   updateFields.profileImage = req.files['profileImage'][0].path;
+        // }
+        if (req.file) {
+          updateFields.profileImage =
+            `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`;
         }
+        
 
         // Remove undefined fields
         Object.keys(updateFields).forEach(
