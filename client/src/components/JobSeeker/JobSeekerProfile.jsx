@@ -51,14 +51,11 @@ const JobSeekerProfile = () => {
             // If profileImage is a URL or base64 string:
             // Adjust accordingly; here assuming base64 string without data prefix
             <img
-  src={
-    user.profileImage.startsWith('http')
-      ? user.profileImage
-      : `${BACKEND_URL}/${user.profileImage}`
-  }
-  alt="Profile"
-  style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover' }}
-/>
+            src={`${BACKEND_URL}${user.profileImage}`}
+            alt="Profile"
+            style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover' }}
+          />
+          
 
           ) : (
             <div style={{
@@ -91,7 +88,7 @@ const JobSeekerProfile = () => {
   <p>
     <strong>Resume:</strong>{' '}
     <a
-      href={`${BACKEND_URL}/${user.resumeFile}`}
+      href={`${BACKEND_URL}${user.resumeFile}`}
       target="_blank"
       rel="noopener noreferrer"
       download
@@ -105,7 +102,7 @@ const JobSeekerProfile = () => {
   <p>
     <strong>Cover Letter:</strong>{' '}
     <a
-      href={`${BACKEND_URL}/${user.coverLetterFile}`}
+      href={`${BACKEND_URL}${user.coverLetterFile}`}
       target="_blank"
       rel="noopener noreferrer"
       download
