@@ -168,7 +168,7 @@ const handleSubmit = async () => {
 {!imagePreview && form.profileImage && (
   <img
     // src={`${BACKEND_URL}/${form.profileImage}`}
-    src={form.profileImage}
+    src={`${BACKEND_URL}${form.profileImage}`}
 
     alt="Current Profile"
     style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '50%', marginTop: '10px' }}
