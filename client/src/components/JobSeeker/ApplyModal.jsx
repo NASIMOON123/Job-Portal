@@ -23,8 +23,14 @@ const ApplyModal = ({ jobId, isOpen, onClose, jobTitle, applyJob, setAppliedJobI
     const fetchUserInfo = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await API.get('/api/jobseeker/profile');
-        const data = await res.json();
+        // const res = await API.get('/api/jobseeker/profile');
+        const res = await API.get('/api/jobseeker/profile', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        // const data = await res.json();
+        const data = res.data;
         setUserInfo({
           name: data.name || '',
           email: data.email || '',

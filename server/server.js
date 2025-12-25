@@ -13,7 +13,14 @@
   import quizRoutes from './routes/quiz.js';
   import path from 'path';
 
+  import fs from 'fs';
 
+  const uploadDir = path.join(process.cwd(), 'uploads');
+  
+  if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+  
+
+  
 
   // import multer from 'multer';
 
@@ -72,7 +79,7 @@
   // Static folder for uploaded images
   // app.use('/uploads', express.static('uploads'));
 
-  app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+  app.use('/uploads', express.static(uploadDir));
 
   app.use('/api/quiz', quizRoutes);
   app.use('/api/interviews', interviewRoutes);
