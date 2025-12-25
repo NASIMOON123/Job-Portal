@@ -11,6 +11,14 @@
 
 
   import bcrypt from 'bcryptjs';
+  import fs from 'fs';
+import path from 'path';
+
+const uploadDir = path.join(process.cwd(), 'uploads');
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 
   // ✅ GET /api/jobseeker/profile
@@ -90,15 +98,20 @@
 
 
   // Configure multer storage and file filter
+  // const storage = multer.diskStorage({
+  //   destination: function (req, file, cb) {
+  //     cb(null, 'uploads/');  // folder to save files, make sure it exists
+  //   },
+  //   filename: function (req, file, cb) {
+  //     // e.g. jobseekerId-timestamp-originalfilename
+  //     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+  //     cb(null, req.user.userId + '-' + uniqueSuffix + '-' + file.originalname);
+  //   },
+  // });
   const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'uploads/');  // folder to save files, make sure it exists
-    },
-    filename: function (req, file, cb) {
-      // e.g. jobseekerId-timestamp-originalfilename
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-      cb(null, req.user.userId + '-' + uniqueSuffix + '-' + file.originalname);
-    },
+    destination: (req, file, cb) => cb(null, uploadDir),
+    filename: (req, file, cb) =>
+      cb(null, `${req.user.userId}-${Date.now()}-${file.originalname}`)
   });
 
   // File filter to validate file types for cover letter and resume separately
@@ -393,9 +406,9 @@
         //   updateFields.profileImage = req.files['profileImage'][0].path;
         // }
         if (req.file) {
-          updateFields.profileImage =
-            `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`;
+          updateFields.profileImage = `/uploads/${req.file.filename}`;
         }
+        
         
 
         // Remove undefined fields
