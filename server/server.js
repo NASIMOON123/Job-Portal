@@ -15,11 +15,11 @@
 
 
 
-  import multer from 'multer';
+  // import multer from 'multer';
 
   dotenv.config();
   const app = express();
-  const upload = multer();
+  // const upload = multer();
   const allowedOrigins = [
     "http://localhost:5173",
     "https://job-portal.vercel.app",
