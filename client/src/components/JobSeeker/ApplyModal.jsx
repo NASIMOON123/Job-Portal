@@ -100,7 +100,12 @@ const ApplyModal = ({ jobId, isOpen, onClose, jobTitle, applyJob, setAppliedJobI
       //   },
       //   body: formData,
       // });
-      const response = await API.post('/api/jobseeker/apply', formData);
+      const response = await API.post('/api/jobseeker/apply', formData, {
+        headers: {
+          Authorization: `Bearer ${token}`, // only auth header
+          // DO NOT set Content-Type; axios handles it automatically
+        },
+      });
 
       if (!response.ok) {
         const errorData = await response.json();
