@@ -11,7 +11,7 @@
   import AdminRoutes from './routes/admin.js';
 
   import quizRoutes from './routes/quiz.js';
-
+  import path from 'path';
 
 
 
@@ -70,7 +70,10 @@
 
 
   // Static folder for uploaded images
-  app.use('/uploads', express.static('uploads'));
+  // app.use('/uploads', express.static('uploads'));
+
+  app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+
   app.use('/api/quiz', quizRoutes);
   app.use('/api/interviews', interviewRoutes);
   app.use('/api/recruiter', recruiterRoutes);
